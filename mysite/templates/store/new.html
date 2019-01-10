@@ -1,0 +1,94 @@
+﻿<html>
+	<head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-
+		    MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	</head>
+	<body>
+		<form action='new' method='POST' class="form-horizontal" accept-charset="utf-8" enctype="multipart/form-data">
+			{% csrf_token %}
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Марка:</label>
+				<div class="col-sm-10">
+					<input type='text' class="form-control" name='name' placeholder="Марка" required>
+				</div>
+            </div>
+            <div class="form-group">
+				<label class="col-sm-2 control-label">Модель:</label>
+				<div class="col-sm-10">
+					<input type='text' class="form-control" name='model' placeholder="Модель" required>
+				</div>
+			</div>
+            <div class="form-group">
+				<label class="col-sm-2 control-label">Год:</label>
+				<div class="col-sm-10">
+					<input type='text' class="form-control" name='year' placeholder="Год" required>
+				</div>
+			</div>
+            <div class="form-group">
+				<label class="col-sm-2 control-label">Цвет:</label>
+				<div class="col-sm-10">
+					<input type='text' class="form-control" name='color' placeholder="Цвет" required>
+				</div>
+			</div>
+            <div class="form-group">
+				<label class="col-sm-2 control-label">Двигатель:</label>
+				<div class="col-sm-10">
+					<input type='text' class="form-control" name='motor' placeholder="Двигатель" required>
+				</div>
+			</div>
+            <div class="form-group">
+				<label class="col-sm-2 control-label">Пробег:</label>
+				<div class="col-sm-10">
+					<input type='text' class="form-control" name='mileage' placeholder="Пробег" required>
+				</div>
+			</div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Привод:</label>
+                <div class="col-sm-10">
+                    <label class="radio-inline"><input type='radio' name='drive' value=1 required>Передний пивод</label>
+                    <label class="radio-inline"><input type='radio' name='drive' value=0 required>Полный привод </label>
+                    <label class="radio-inline"><input type='radio' name='drive' value=-1 required>Задний привод </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Руль:</label>
+                <div class="col-sm-10">
+                    <label class="radio-inline"><input type='radio' name='wheel' value=1 required>Слева</label>
+                    <label class="radio-inline"><input type='radio' name='wheel' value=-1 required>Справа </label>
+                </div>
+            </div>
+            <div class="form-group">
+				<label class="col-sm-2 control-label">Текст объявления:</label>
+				<div class="col-sm-10">
+					<input type='text' class="form-control" name='info' placeholder="Текст объявления" required>
+				</div>
+			</div>
+            <div class="form-group">
+				<label class="col-sm-2 control-label">Цена:</label>
+				<div class="col-sm-10">
+					<input type='text' class="form-control" name='price' placeholder="Цена" required>
+				</div>
+			</div>
+            <div class="form-group">
+				<label class="col-sm-2 control-label">Контактные данные:</label>
+				<div class="col-sm-10">
+					<input type='text' class="form-control" name='phone' placeholder="Контактные данные" required>
+				</div>
+			</div>
+            <div class="form-group">
+				<label class="col-sm-2 control-label">Город:</label>
+				<div class="col-sm-10">
+					<input type='text' class="form-control" name='city' placeholder="Город" required>
+				</div>
+			</div>
+            <div class="form-group">
+				<label class="col-sm-2 control-label">Фото:</label>
+				<div class="col-sm-10">
+					<input type='file' class="form-control" name='image' placeholder="Фото" required>
+				</div>
+			</div>
+			<p><input type='submit' class="btn btn-success" value='Подать объявление'></p>
+		</form>
+		<a href="/" class="btn btn-primary">Назад</a>
+	</body>
+</html>

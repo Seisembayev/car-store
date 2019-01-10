@@ -1,0 +1,144 @@
+﻿<html>
+	<head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-
+		    MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	</head>
+	<body>
+		{% if user.is_authenticated and user == car.user%}
+			<form action='edit' method='POST' class="form-horizontal" accept-charset="utf-8" enctype="multipart/form-data">
+				{% csrf_token %}
+                <input type='hidden' name='id' value='{{car.id}}'>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Марка:</label>
+                    <div class="col-sm-10">
+                        <input type='text' class="form-control" name='name' value="{{car.name}}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Модель:</label>
+                    <div class="col-sm-10">
+                        <input type='text' class="form-control" name='model' value="{{car.model}}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Год:</label>
+                    <div class="col-sm-10">
+                        <input type='text' class="form-control" name='year' value="{{car.year}}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Цвет:</label>
+                    <div class="col-sm-10">
+                        <input type='text' class="form-control" name='color' value="{{car.color}}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Двигатель(л):</label>
+                    <div class="col-sm-10">
+                        <input type='text' class="form-control" name='motor' value="{{car.motor}}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Пробег(км):</label>
+                    <div class="col-sm-10">
+                        <input type='text' class="form-control" name='mileage' value="{{car.mileage}}">
+                    </div>
+                </div>
+                {% if car.drive == 0 %}
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Привод:</label>
+                    <div class="col-sm-10">
+                        <label class="radio-inline"><input type='radio' name='drive' value=1>Передний пивод</label>
+                        <label class="radio-inline"><input type='radio' name='drive' value=0 checked>Полный привод </label>
+                        <label class="radio-inline"><input type='radio' name='drive' value=-1>Задний привод </label>
+                    </div>
+                </div>
+                {% elif car.drive == 1 %}
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Привод:</label>
+                    <div class="col-sm-10">
+                        <label class="radio-inline"><input type='radio' name='drive' value=1>Передний пивод</label>
+                        <label class="radio-inline"><input type='radio' name='drive' value=0 checked>Полный привод </label>
+                        <label class="radio-inline"><input type='radio' name='drive' value=-1>Задний привод </label>
+                    </div>
+                </div>
+                {% else %}
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Привод:</label>
+                    <div class="col-sm-10">
+                        <label class="radio-inline"><input type='radio' name='drive' value=1>Передний пивод</label>
+                        <label class="radio-inline"><input type='radio' name='drive' value=0>Полный привод </label>
+                        <label class="radio-inline"><input type='radio' name='drive' value=-1 checked>Задний привод </label>
+                    </div>
+                </div>
+				{% endif %}
+                {% if car.wheel == 1 %}
+                 <div class="form-group">
+                    <label class="col-sm-2 control-label">Руль:</label>
+                    <div class="col-sm-10">
+                        <label class="radio-inline"><input type='radio' name='wheel' value=1 checked>Слева</label>
+                        <label class="radio-inline"><input type='radio' name='wheel' value=-1>Справа </label>
+                    </div>
+                </div>
+                {% else %}
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Руль:</label>
+                    <div class="col-sm-10">
+                        <label class="radio-inline"><input type='radio' name='wheel' value=1>Слева</label>
+                        <label class="radio-inline"><input type='radio' name='wheel' value=-1 checked>Справа </label>
+                    </div>
+                </div>
+				{% endif %}
+                <div class="form-group">
+				    <label class="col-sm-2 control-label">Текст объявления:</label>
+				    <div class="col-sm-10">
+				    	<input type='text' class="form-control" name='info' value="{{car.info}}">
+				    </div>
+			    </div>
+                <div class="form-group">
+				    <label class="col-sm-2 control-label">Цена:</label>
+				    <div class="col-sm-10">
+				    	<input type='text' class="form-control" name='price' value="{{car.price}}">
+				    </div>
+			    </div>
+                <div class="form-group">
+				    <label class="col-sm-2 control-label">Контактные данные:</label>
+				    <div class="col-sm-10">
+				    	<input type='text' class="form-control" name='phone' value="{{car.phone}}">
+				    </div>
+			    </div>
+                <div class="form-group">
+				    <label class="col-sm-2 control-label">Город:</label>
+				    <div class="col-sm-10">
+				    	<input type='text' class="form-control" name='city' value="{{car.city}}">
+				    </div>
+			    </div>
+                <div class="form-group">
+				    <label class="col-sm-2 control-label">Добавить фото:</label>
+				    <div class="col-sm-10">
+				    	<input type='file' class="form-control" name='image'>
+				    </div>
+			    </div>
+				<p><input type='submit' class="btn btn-success" value='Изменить'></p>
+			</form>
+            {% for i in pictures %}
+			{% if i.image and i.car == car %}
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="thumbnail">
+                            <a href="{{MEDIA_URL}}{{i.image.url}}" target="_blank">
+                            <img src="{{MEDIA_URL}}{{i.image.url}}" style="width:100%">
+                            </a>
+                            <small><a href="{% url 'delPic'%}?id={{i.id}}">Удалить</a></small><br>
+                            <hr>
+                        </div>
+                    </div>
+                </div>
+			{% endif %}
+		{% endfor %}
+		{% else %}
+			Не твоя, вот ты и бесишься :) <br>
+		{% endif %}
+		<a href="{% url 'car'%}?id={{car.id}}" class="btn btn-primary">Назад</a>
+	</body>
+</html>

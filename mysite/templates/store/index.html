@@ -1,0 +1,50 @@
+﻿<html>
+	<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-
+		    MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+		{% if user.is_authenticated %}
+            <div class="jumbotron">
+                <div class="container">
+                    <li><em>Пользователь: <a href="{% url 'profile' %}">{{ user.get_username }}</a></em></li>
+                    <li><em><a href="{% url 'logout'%}?next={{request.path}}">Выход</a></em></li>
+                    <li><em><a href="{% url 'new'%}">Подать объявление</a></em></li>
+                </div>
+            </div>
+		{% else %}
+            <div class="jumbotron">
+                <div class="container">
+                    <li><a href="{% url 'login'%}?next={{request.path}}">Вход</a></li>
+                    <li><a href="{% url 'signup'%}">Регистрация</a></li>
+                </div>
+            </div>
+		{% endif %}
+	</head>
+	<body>
+        <div class="container">
+        <form action='search' method='POST' accept-charset="utf-8">
+			{% csrf_token %}
+			<input type="text" name="search" placeholder="Поиск"  required>
+			<input type="submit" class="btn btn-primary" value="Поиск">
+		</form>
+            {% for i in cars %}
+                {% for j in pictures %}
+                    {% if j.image and j.car == i  and j.main == True %}
+                        <div class="media">
+                            <div class="media-left">
+                                <img src="{{MEDIA_URL}}{{j.image.url}}" class="media-object" style="width:350px"><br>
+                            </div>
+                    {% endif %}
+                {% endfor %}
+                            <div class="media-body">
+                                <h4 class="media-heading"><a href="{% url 'car' %}?id={{i.id}}">{{i.name}} {{i.model}}</a></h4>
+                                <p>{{i.price}} тг</p>
+                                <p>{{i.year}} г.</p>
+                                <p>{{i.motor}}, {{i.mileage}} км, {{i.color}} ...</p>
+                            </div>
+                        </div>
+                        <hr>
+            {% endfor %}
+        </div>
+    <hr>
+	</body>
+</html>

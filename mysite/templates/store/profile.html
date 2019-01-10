@@ -1,0 +1,22 @@
+﻿<html>
+	<head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-
+		    MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	</head>
+	<body>
+		Пользователь: {{user}} <hr>
+		{% for i in car %}
+			{% if i.user == user %}
+				{% for j in pictures %}
+					{% if j.image and j.car == i  and j.main == True %}
+						<img src="{{MEDIA_URL}}{{j.image.url}}">
+					{% endif %}
+				{% endfor %}
+				<li><a href="{% url 'car' %}?id={{i.id}}">{{i.name}}{{i.model}}</a> {{i.price}} тг</li>
+				{{i.year}} г. {{i.motor}}, {{i.mileage}} км, {{i.color}} ...
+				<hr>
+			{% endif %}
+		{% endfor %}
+        <a href="/" class="btn btn-primary">Назад</a>
+	</body>
+</html>
